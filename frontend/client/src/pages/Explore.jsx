@@ -63,6 +63,21 @@ const Explore = () => {
     }
   };
 
+const handlePostSkill = async () => {
+  try {
+    const res = await API.post("/skills", {
+      skillName: "Java",
+      level: "beginner"
+    });
+
+    console.log("Skill added:", res.data);
+    alert("Skill added successfully!");
+  } catch (err) {
+    console.log("Error:", err);
+    alert("Skill post failed");
+  }
+};
+
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
@@ -84,7 +99,7 @@ const Explore = () => {
         ...newSkill,
         tags: newSkill.tags.split(',').map(t => t.trim()).filter(Boolean)
       };
-      await API.post('/skills', payload);
+      await API.post('/api/skills', payload);
       toast.success('Skill posted successfully! 🎉');
       setShowCreateModal(false);
       setNewSkill({ title: '', description: '', category: 'Tech', level: 'Beginner', type: 'offered', tags: '' });
@@ -368,7 +383,7 @@ const Explore = () => {
                 <button type="button" onClick={() => setShowCreateModal(false)} className="btn-secondary flex-1 justify-center">
                   Cancel
                 </button>
-                <button type="submit" className="btn-primary flex-1 justify-center">
+                <button type="submit" className="btn-primary flex-1 justify-center" onClick={handlePostSkill} >
                   Post Skill
                 </button>
               </div>
