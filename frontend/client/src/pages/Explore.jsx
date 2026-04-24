@@ -54,7 +54,7 @@ const Explore = () => {
       const params = {};
       if (category && category !== 'All') params.category = category;
       if (type) params.type = type;
-      const res = await API.get('/skills', { params });
+      const res = await API.get('/api/skills', { params });
       setSkills(res.data);
     } catch (err) {
       console.error(err);
@@ -65,7 +65,7 @@ const Explore = () => {
 
 const handlePostSkill = async () => {
   try {
-    const res = await API.post("/skills", {
+    const res = await API.post("/api/skills", {
       skillName: "Java",
       level: "beginner"
     });
