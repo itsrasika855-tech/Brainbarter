@@ -54,7 +54,7 @@ const Explore = () => {
       const params = {};
       if (category && category !== 'All') params.category = category;
       if (type) params.type = type;
-      const res = await API.get('/api/skills', { params });
+      const res = await API.get('/skills', { params });
       setSkills(res.data);
     } catch (err) {
       console.error(err);
@@ -63,20 +63,7 @@ const Explore = () => {
     }
   };
 
-const handlePostSkill = async () => {
-  try {
-    const res = await API.post("/api/skills", {
-      skillName: "Java",
-      level: "beginner"
-    });
 
-    console.log("Skill added:", res.data);
-    alert("Skill added successfully!");
-  } catch (err) {
-    console.log("Error:", err);
-    alert("Skill post failed");
-  }
-};
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -99,7 +86,7 @@ const handlePostSkill = async () => {
         ...newSkill,
         tags: newSkill.tags.split(',').map(t => t.trim()).filter(Boolean)
       };
-      await API.post('/api/skills', payload);
+      await API.post('/skills', payload);
       toast.success('Skill posted successfully! 🎉');
       setShowCreateModal(false);
       setNewSkill({ title: '', description: '', category: 'Tech', level: 'Beginner', type: 'offered', tags: '' });
@@ -383,7 +370,7 @@ const handlePostSkill = async () => {
                 <button type="button" onClick={() => setShowCreateModal(false)} className="btn-secondary flex-1 justify-center">
                   Cancel
                 </button>
-                <button type="submit" className="btn-primary flex-1 justify-center" onClick={handlePostSkill} >
+                <button type="submit" className="btn-primary flex-1 justify-center">
                   Post Skill
                 </button>
               </div>

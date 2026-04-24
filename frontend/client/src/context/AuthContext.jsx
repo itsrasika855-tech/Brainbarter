@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import API from '../utils/api';
-console.log("NEW CODE RUNNING");
 const AuthContext = createContext(null);
 
 export const useAuth = () => {
@@ -11,7 +10,6 @@ export const useAuth = () => {
   return context;
 };
 
-console.log("TEST CHANGE");
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('brainbarter_token'));

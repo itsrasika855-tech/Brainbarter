@@ -198,7 +198,7 @@ app.get("/users", async (req, res) => {
 // ========================
 
 // POST /add-skill → Add a skill for a user
-app.post("/add-skill", async (req, res) => {
+app.post("/api/skills", async (req, res) => {
     try {
         const { userId, skillName, level, description } = req.body;
 
@@ -218,7 +218,7 @@ app.post("/add-skill", async (req, res) => {
 });
 
 // GET /skills/:userId → Get all skills of a specific user
-app.get("/skills/:userId", async (req, res) => {
+app.get("/api/skills/:userId", async (req, res) => {
     try {
         const skills = await Skill.find({ userId: req.params.userId });
         console.log("✅ Skills fetched for user:", req.params.userId, "-", skills.length, "found");
