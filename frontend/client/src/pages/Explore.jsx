@@ -63,8 +63,6 @@ const Explore = () => {
     }
   };
 
-
-
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
